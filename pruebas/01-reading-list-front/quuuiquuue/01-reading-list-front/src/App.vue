@@ -1,16 +1,38 @@
-<script setup>
-import Pagina from './components/Pagina.vue';
-import { ref, onMounted } from 'vue';
-
-const booksData = ref([]);
-</script>
-
 <template>
-  <main class="px-4 max-w-screen-lg grid m-auto min-h-screen grid-rows-[60px,1fr,60px] gap-4">
-    <nav class="flex items-center text-2xl">Libreria</nav>
-    <Pagina :books="booksData"></Pagina>
-    <footer class="flex items-center justify-center">Hecho por Enrique Contreras Lopez</footer>
-  </main>
+  <div>
+    <BookList :books="books" :addToReadingList="addToReadingList" :genres="genres" />
+    <ReadingList :readingList="readingList" :removeFromReadingList="removeFromReadingList" />
+  </div>
 </template>
 
-<style scoped></style>
+<script setup>
+import { ref } from 'vue';
+import BookList from '@/components/BookList.vue';
+import ReadingList from '@/components/ReadingList.vue';
+import BookService from '@/services/BookService';
+
+// Obtenemos las variables reactivas desde BookService
+const books = BookService.books;
+const readingList = BookService.readingList;
+
+// Definimos una lista de géneros (podría obtenerse de una fuente externa)
+const genres = ref(['Ficción', 'Fantasía', 'Misterio']);
+
+// Función para agregar un libro a la lista de lectura
+const addToReadingList = (book) => {
+  BookService.readingList.push(book);
+};
+
+// Función para eliminar un libro de la lista de lectura
+const removeFromReadingList = (book) => {
+  const index = BookService.readingList.indexOf(book);
+  if (index !== -1) {
+    BookService.readingList.splice(index, 1);
+  }
+};
+
+</script>
+
+<style>
+/* Estilos globales si es necesario */
+</style>
