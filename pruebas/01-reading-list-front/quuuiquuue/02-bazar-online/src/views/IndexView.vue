@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import Inicio from '../components/Index.vue'
 </script>
 
 <template>
-  <RouterView />
+  <main>
+    <Inicio />
+  </main>
 </template>
-
 <style scoped>
 
 </style>
