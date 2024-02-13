@@ -33,6 +33,46 @@ watch(genre, (newValue) => {
   }
 })
 
+const handleChangesPages = (event: Event) => {
+  const target = event.target as HTMLSelectElement
+  const selectedPages = parseInt(target.value);
+
+  if (!isNaN(selectedPages)) {
+    if (genre.value === '') {
+      booksList.value = books.filter((book) => book.pages <= selectedPages);
+    } else {
+      booksList.value = books.filter((book) => book.genre === genre.value && book.pages <= selectedPages);
+    }
+  } else {
+    if (genre.value === '') {
+      booksList.value = books;
+    } else {
+      booksList.value = books.filter((book) => book.genre === genre.value);
+    }
+  }
+}
+
+const handleSearch = (event: Event) => {
+  const searchString = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  if (searchString === '') {
+    if (genre.value === '') {
+      booksList.value = books;
+    } else {
+      booksList.value = books.filter((book) => book.genre === genre.value);
+    }
+  } else {
+    if (genre.value === '') {
+      booksList.value = books.filter((book) =>
+        book.title.toLowerCase().includes(searchString)
+      );
+    } else {
+      booksList.value = books.filter((book) =>
+        book.title.toLowerCase().includes(searchString) && book.genre === genre.value
+      );
+    }
+  }
+};
+
 
 const matches = computed(() => {
   if (genre.value === '') {
@@ -98,17 +138,40 @@ window.addEventListener('storage', (event) => {
 </script>
 
 <template>
-  <article class="grid gap-4">
+  <main class="general">
+    <article class="grid gap-4">
     <nav class="flex justify-around">
+      <input type="text" placeholder="Buscar por título" @input="handleSearch" />
       <select @change="handleChanges">
         <option value="">Todos</option>
         <option v-for="genre in genres" :key="genre" :value="genre">{{ genre }}</option>
       </select>
+      <select @change="handleChangesPages">
+    <option value="">Cualquier número de páginas</option>
+    <option value="100">Menos de 100 páginas</option>
+    <option value="200">Menos de 200 páginas</option>
+    <option value="300">Menos de 300 páginas</option>
+    <option value="400">Menos de 400 páginas</option>
+    <option value="500">Menos de 500 páginas</option>
+    <!-- Agrega más opciones según tus necesidades -->
+  </select>
       <h3 class="font-bold text-4xl">Favoritos:</h3>
     </nav>
-    <section class="grid grid-cols-2 gap-10 w-auto">
-      <Books :books="booksList" @book-click="handleBookClick" />
-      <Books :books="readList" @book-click="handleBookClick" />
+    <section class="grid grid-cols-2 gap-10 w-auto overflow-hidden">
+      <div class="left">
+        <Books :books="booksList" @book-click="handleBookClick" />
+      </div>
+      <div class="right">
+        <Books :books="readList" @book-click="handleBookClick" />
+      </div>
     </section>
   </article>
+  </main>
+  
 </template>
+
+<style scoped>
+.left {
+  float: left;
+}
+</style>

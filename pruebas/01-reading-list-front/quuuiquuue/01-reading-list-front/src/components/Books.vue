@@ -14,9 +14,9 @@ const handleBookClick = (book: string) => {
 
 <template>
     <article class="">
-        <ul class="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-2">
+        <ul class="gridImagenes">
             <li v-for="book in books" :key="book.ISBN" class="grid gap-2" @click="handleBookClick(book.ISBN)">
-                <img class="aspect-[9/14] object-cover" :src="book.cover" :alt="book.title">
+                <img class="libros" :src="book.cover" :alt="book.title">
                 <p>
                     {{ book.title }}
                 </p>
@@ -24,3 +24,16 @@ const handleBookClick = (book: string) => {
         </ul>
     </article>
 </template>
+
+<style>
+.gridImagenes {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+}
+.libros{
+    width: 150px;
+    height: 200px;
+}
+</style>

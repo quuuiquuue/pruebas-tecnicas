@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <section>
       <RouterView />
     </section>
-    <footer class="flex items-center justify-center">Designed with 🩶 by Manuel</footer>
+    <footer class="flex items-center justify-center">Enrique Contreras</footer>
   </main>
 
 </template>
