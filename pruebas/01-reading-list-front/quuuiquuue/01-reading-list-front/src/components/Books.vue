@@ -31,6 +31,9 @@ const handleBookClick = (book: string) => {
     grid-template-columns: repeat(3,1fr);
     column-gap: 10px;
     row-gap: 10px;
+    border: 1px solid white;
+    padding: 15px;
+    border-radius: 10px;
 }
 .libros{
     width: 150px;

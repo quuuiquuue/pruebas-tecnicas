@@ -147,14 +147,14 @@ window.addEventListener('storage', (event) => {
         <option v-for="genre in genres" :key="genre" :value="genre">{{ genre }}</option>
       </select>
       <select @change="handleChangesPages">
-    <option value="">Cualquier número de páginas</option>
-    <option value="100">Menos de 100 páginas</option>
-    <option value="200">Menos de 200 páginas</option>
-    <option value="300">Menos de 300 páginas</option>
-    <option value="400">Menos de 400 páginas</option>
-    <option value="500">Menos de 500 páginas</option>
-    <!-- Agrega más opciones según tus necesidades -->
-  </select>
+        <option value="">Cualquier número de páginas</option>
+        <option value="100">Menos de 100 páginas</option>
+        <option value="200">Menos de 200 páginas</option>
+        <option value="300">Menos de 300 páginas</option>
+        <option value="400">Menos de 400 páginas</option>
+        <option value="500">Menos de 500 páginas</option>
+        <!-- Agrega más opciones según tus necesidades -->
+      </select>
       <h3 class="font-bold text-4xl">Favoritos:</h3>
     </nav>
     <section class="grid grid-cols-2 gap-10 w-auto overflow-hidden">
@@ -173,5 +173,8 @@ window.addEventListener('storage', (event) => {
 <style scoped>
 .left {
   float: left;
+}
+.right {
+  float: right;
 }
 </style>
