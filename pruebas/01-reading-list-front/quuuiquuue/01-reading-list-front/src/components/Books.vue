@@ -13,6 +13,7 @@ const handleBookClick = (book: string) => {
 </script>
 
 <template>
+    
     <article class="">
         <ul class="gridImagenes">
             <li v-for="book in books" :key="book.ISBN" class="grid gap-2" @click="handleBookClick(book.ISBN)">
@@ -26,9 +27,19 @@ const handleBookClick = (book: string) => {
 </template>
 
 <style>
-.gridImagenes {
+.gridImagenes{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.gridImagenes li{
+    display: grid;
+    grid-template-columns: repeat(1,2fr);
     column-gap: 10px;
     row-gap: 10px;
     border: 1px solid white;
@@ -36,7 +47,7 @@ const handleBookClick = (book: string) => {
     border-radius: 10px;
 }
 .libros{
-    width: 150px;
+    width: 250px;
     height: 200px;
 }
 </style>

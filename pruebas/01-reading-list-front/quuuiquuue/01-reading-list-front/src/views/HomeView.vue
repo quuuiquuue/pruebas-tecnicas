@@ -11,7 +11,7 @@ const genres: string[] = Array.from(new Set(books.map((book) => book.genre)))
 
 const genre = ref('');
 const booksList: Ref<Book[]> = ref<Book[]>(books);
-const readList: Ref<Book[]> = ref<Book[]>([])
+const readList: Ref<Book[]> = ref<Book[]>([]);
 
 
 const handleChanges = (event: Event) => {
@@ -140,13 +140,13 @@ window.addEventListener('storage', (event) => {
 <template>
   <main class="general">
     <article class="grid gap-4">
-    <nav class="flex justify-around">
-      <input type="text" placeholder="Buscar por título" @input="handleSearch" />
-      <select @change="handleChanges">
+    <nav class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl space-x-40 ">
+      <input class="rounded-lg px-2" type="text" placeholder=" Buscar por título" @input="handleSearch" />
+      <select class="rounded-lg px-2" @change="handleChanges">
         <option value="">Todos</option>
         <option v-for="genre in genres" :key="genre" :value="genre">{{ genre }}</option>
       </select>
-      <select @change="handleChangesPages">
+      <select class="rounded-lg px-2" @change="handleChangesPages">
         <option value="">Cualquier número de páginas</option>
         <option value="100">Menos de 100 páginas</option>
         <option value="200">Menos de 200 páginas</option>
@@ -155,13 +155,17 @@ window.addEventListener('storage', (event) => {
         <option value="500">Menos de 500 páginas</option>
         <!-- Agrega más opciones según tus necesidades -->
       </select>
-      <h3 class="font-bold text-4xl">Favoritos:</h3>
     </nav>
+    
     <section class="grid grid-cols-2 gap-10 w-auto overflow-hidden">
       <div class="left">
+        <h3 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-2xl dark:text-white">Libros disponibles: {{ booksList.length }}</h3>
+
         <Books :books="booksList" @book-click="handleBookClick" />
       </div>
+      
       <div class="right">
+        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-2xl dark:text-white">Lista de lectura</h1>
         <Books :books="readList" @book-click="handleBookClick" />
       </div>
     </section>
