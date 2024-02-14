@@ -1,20 +1,17 @@
 <template>
-    <main class="flex flex-col items-center justify-top h-screen m-4">
-        <section class="flex">
-            <img class="h-12 mr-4" :src="caravana" alt="Caravana icon">
-            <div class="flex items-center leading-7 relative max-w-190">
-                <input placeholder="Search" type="search"
-                    class="input w-full h-10 leading-10 px-4 pl-10 border-2 border-transparent rounded-md outline-none bg-gray-200 text-gray-800 transition duration-300 ease-in-out">
+    <main class="">
+        <section class="card">
+            <div class="card__img">
+                <img :src="image" alt="Product Thumbnail">
             </div>
-        </section>
-        <section>
-            <p>Resultado de la busqueda {{ props.title }}</p>
-            <img :src="props.image">
-            <p>{{ props.title }}</p>
-            <p>{{ props.description }}</p>
-            <p>{{ props.price }}</p>
-            <p>{{ props.rating }}</p>
-            <!-- Mostrar los resultados de la búsqueda -->
+
+            <div class="card__title">{{ title }}</div>
+            <div class="card__subtitle">{{ description }}</div>
+
+            <div class="card__wrapper">
+                <button class="card__btn card__btn-solid">Comprar</button>
+                <button class="card__btn card__btn-solid">Mostrar</button>
+            </div>
         </section>
 
     </main>
@@ -22,28 +19,26 @@
 
 <script setup lang="ts">
 
-import caravana from '/caravan.gif'
-
 const props = defineProps({
     image: {
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     title: {
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     description: {
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     price: {
         type: Number,
-        required:true
-    } ,
+        required: true
+    },
     rating: {
         type: Number,
-        required:true
+        required: true
     }
 })
 
@@ -64,10 +59,101 @@ const props = defineProps({
 }
 
 body {
+
     background-color: white;
 }
 
-p{
+p {
     color: black;
+}
+.card {
+  --main-color: #000;
+  --submain-color: #78858F;
+  --bg-color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  position: relative;
+  width: 500px; /* Ancho ajustado automáticamente */
+  height: auto; /* Alto ajustado automáticamente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  background: var(--bg-color);
+  border: 5px solid black;
+  padding: 10px;
+  margin: 10px;
+
+}
+
+.card__img {
+  height: 100%;
+  width: 100%;
+}
+
+.card__img svg {
+  height: 100%;
+  border-radius: 20px 20px 0 0;
+}
+
+.card__avatar {
+  position: absolute;
+  width: 114px;
+  height: 114px;
+  background: var(--bg-color);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: calc(50% - 57px);
+}
+
+.card__avatar svg {
+  width: 100px;
+  height: 100px;
+}
+
+.card__title {
+  margin-top: 60px;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--main-color);
+}
+
+.card__subtitle {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--submain-color);
+}
+
+.card__btn {
+  margin-top: 15px;
+  width: 76px;
+  height: 31px;
+  border: 2px solid var(--main-color);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--main-color);
+  background: var(--bg-color);
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.card__btn-solid {
+  background: var(--main-color);
+  color: var(--bg-color);
+  padding: 5px;
+  margin: 5px;
+}
+
+.card__btn:hover {
+  background: var(--main-color);
+  color: var(--bg-color);
+}
+
+.card__btn-solid:hover {
+  background: var(--bg-color);
+  color: var(--main-color);
 }
 </style>

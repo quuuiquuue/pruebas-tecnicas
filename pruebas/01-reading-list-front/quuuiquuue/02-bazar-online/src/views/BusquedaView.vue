@@ -1,9 +1,16 @@
 <template>
   <main>
-    <h1>{{ searchTerm }}</h1>
     <article>
+      <section class="flex">
+            <img class="h-12 mr-4" :src="caravana" alt="Caravana icon">
+            <div class="flex items-center leading-7 relative max-w-190">
+                <input placeholder="Search" type="search"
+                    class="input w-full h-10 leading-10 px-4 pl-10 border-2 border-transparent rounded-md outline-none bg-gray-200 text-gray-800 transition duration-300 ease-in-out">
+            </div>
+      </section>
+      <h1> Resultado de la busqueda: {{ searchTerm }}</h1>
       <section>
-        <div v-for="product in searchResults" :key="product.id">
+        <div class="grid" v-for="product in searchResults" :key="product.id">
           <!-- Pasar las props al componente Busqueda -->
           <Busqueda
             :image="product.thumbnail"
@@ -18,11 +25,19 @@
   </main>
 </template>
 
+<style scoped>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+</style>
+
 <script setup lang="ts">
+import caravana from '/caravan.gif'
 import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import type { Producto } from '@/types/type'
-import Busqueda from '../components/Busqueda.vue'
+import Busqueda from '@/components/Busqueda.vue'
 
 const route = useRoute()
 const searchTerm = ref('')
@@ -42,7 +57,9 @@ async function searchApi() {
         console.log(data);
         
         // Actualizar los resultados de la búsqueda
-        searchResults.value = data.results
+        searchResults.value = data.items;
+        console.log(searchResults.value);
+        
     } catch (error) {
         console.error('Error al buscar en la API:', error)
     }
