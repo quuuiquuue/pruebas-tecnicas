@@ -1,9 +1,28 @@
+<template>
+  <main>
+    <h1>{{ searchTerm }}</h1>
+    <article>
+      <section>
+        <div v-for="product in searchResults" :key="product.id">
+          <!-- Pasar las props al componente Busqueda -->
+          <Busqueda
+            :image="product.thumbnail"
+            :title="product.title"
+            :description="product.description"
+            :price="product.price"
+            :rating="product.rating"
+          />
+        </div>
+      </section>
+    </article>
+  </main>
+</template>
+
 <script setup lang="ts">
-import Busqueda from '../components/Busqueda.vue'
-import { ref, watch } from 'vue'
-import caravana from '/caravan.gif'
+import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import type {Producto} from '@/types/type'
+import type { Producto } from '@/types/type'
+import Busqueda from '../components/Busqueda.vue'
 
 const route = useRoute()
 const searchTerm = ref('')
@@ -33,10 +52,14 @@ async function searchApi() {
 watch(searchTerm, () => {
     searchApi()
 });
-</script>
 
-<template>
-  <main>
-    <Busqueda/>
-  </main>
-</template>
+// Llamar a la función de búsqueda al montar el componente
+onMounted(() => {
+    // Obtener el parámetro 'q' de la URL
+    if (route.query.q) {
+        searchTerm.value = route.query.q.toString()
+        // Realizar la búsqueda inicial al montar el componente
+        searchApi()
+    }
+})
+</script>

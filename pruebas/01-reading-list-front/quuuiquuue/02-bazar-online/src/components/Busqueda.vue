@@ -8,7 +8,12 @@
             </div>
         </section>
         <section>
-            <p>Resultados de búsqueda de {{ searchTerm }}</p>
+            <p>Resultado de la busqueda {{ props.title }}</p>
+            <img :src="props.image">
+            <p>{{ props.title }}</p>
+            <p>{{ props.description }}</p>
+            <p>{{ props.price }}</p>
+            <p>{{ props.rating }}</p>
             <!-- Mostrar los resultados de la búsqueda -->
         </section>
 
@@ -16,19 +21,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+
 import caravana from '/caravan.gif'
-import { useRoute } from 'vue-router'
-import type {Producto} from '@/types/type'
 
-const route = useRoute()
-const searchTerm = ref('')
-const searchResults = ref([])
+const props = defineProps({
+    image: {
+        type:String,
+        required:true
+    },
+    title: {
+        type:String,
+        required:true
+    },
+    description: {
+        type:String,
+        required:true
+    },
+    price: {
+        type: Number,
+        required:true
+    } ,
+    rating: {
+        type: Number,
+        required:true
+    }
+})
 
-// Obtener el parámetro 'q' de la URL
-if (route.query.q) {
-    searchTerm.value = route.query.q.toString()
-}
 
 </script>
 

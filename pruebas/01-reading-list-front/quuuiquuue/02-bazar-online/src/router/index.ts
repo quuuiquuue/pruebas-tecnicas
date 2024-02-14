@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Index from '../components/Index.vue'
-import Busqueda from '../components/Busqueda.vue'
+import Index from '../views/IndexView.vue'
+import Busqueda from '../views/BusquedaView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,11 +16,6 @@ const router = createRouter({
       name: 'search',
       component: Busqueda
     },
-    {
-      path: '/',
-      name: 'home',
-      component: Index
-    }
   ]
 })
 
