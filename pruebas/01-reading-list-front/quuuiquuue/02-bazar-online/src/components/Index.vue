@@ -3,7 +3,7 @@
         <main class="flex flex-col grow items-center w-full">  
             <div class="felx felx-col gap-8 items-center justify-center grow contenedor">
                 <img :src="caravana" alt="Caravana icon" class="img-index">
-                <h1 class="text-4xl text-black font-bold mb-4">Bazar Online</h1>
+                <h1 class="text-4xl text-black font-bold mb-4 font-serif">Bazar Online</h1>
                 <input v-model="searchQuery" class="mb-4" type="text" placeholder="laptops, smartphones, ...">
                 <button @click="search" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg">Buscar</button>
             </div>
