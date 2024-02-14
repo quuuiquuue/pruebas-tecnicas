@@ -27,6 +27,7 @@ const search = ref('')
 if (route.query.q) {
     search.value = route.query.q.toString()
 }
+
 </script>
 
 <style focus>
