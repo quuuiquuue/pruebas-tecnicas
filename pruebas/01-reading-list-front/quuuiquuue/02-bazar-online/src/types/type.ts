@@ -1,4 +1,4 @@
-type Producto = {
+export interface Producto {
     id: number;
     title: string;
     description: string;

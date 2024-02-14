@@ -10,19 +10,6 @@
         <section>
             <p>Resultados de búsqueda de {{ searchTerm }}</p>
             <!-- Mostrar los resultados de la búsqueda -->
-            <div v-if="searchResults.length > 0">
-                <ul>
-                    <li v-for="result in searchResults" :key="result.id">
-                        <!-- Muestra aquí los datos de cada resultado -->
-                        <p>{{ result.name }}</p>
-                        <p>{{ result.description }}</p>
-                        <!-- Agrega más campos según la estructura de tus datos -->
-                    </li>
-                </ul>
-            </div>
-            <div v-else>
-                No se encontraron resultados.
-            </div>
         </section>
 
     </main>
@@ -43,23 +30,6 @@ if (route.query.q) {
     searchTerm.value = route.query.q.toString()
 }
 
-// Función para realizar la búsqueda en la API
-async function searchApi() {
-    try {
-        // Realizar la solicitud a la API con el término de búsqueda
-        const response = await fetch(`https://api-productos-88jl.onrender.com?q=${searchTerm.value}`)
-        const data = await response.json()
-        // Actualizar los resultados de la búsqueda
-        searchResults.value = data.results
-    } catch (error) {
-        console.error('Error al buscar en la API:', error)
-    }
-}
-
-// Observar cambios en el término de búsqueda y llamar a la función de búsqueda
-watch(searchTerm, () => {
-    searchApi()
-});
 </script>
 
 <style focus>
