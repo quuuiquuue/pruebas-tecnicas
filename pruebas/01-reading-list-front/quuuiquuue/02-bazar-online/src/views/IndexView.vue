@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import Inicio from '../components/Index.vue'
+import Index from '../components/Index.vue'
 </script>
 
 <template>
   <main>
-    <Inicio />
+    <Index />
   </main>
 </template>
 <style scoped>
-
+main {
+  width: 90%;
+  margin: 0 auto;
+}
 </style>

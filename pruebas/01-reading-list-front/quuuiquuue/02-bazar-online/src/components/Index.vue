@@ -1,7 +1,7 @@
 <template>
     <body class="flex flex-col items-center justify-center container min-h-screen">
         <main class="flex flex-col grow items-center w-full">  
-            <div class="felx felx-col gap-8 items-center justify-center grow contenedor">
+           <div class="felx felx-col gap-8 items-center justify-center grow contenedor">
                 <img :src="caravana" alt="Caravana icon" class="img-index">
                 <h1 class="text-4xl text-black font-bold mb-4 font-serif">Bazar Online</h1>
                 <input v-model="searchQuery" class="mb-4" type="text" placeholder="laptops, smartphones, ...">
@@ -26,9 +26,11 @@ const search = () => {
 }
 </script>
 <style scoped>
+
 .contenedor {
     padding: 10px;
-    text-align:center;                                               
+    text-align:center;          
+    border: 10px solid black;                                     
 } 
 
 .img-index {
@@ -41,6 +43,7 @@ h1{
     font-weight: 400;
     font-style: normal;
 }
+
 
 
 </style>

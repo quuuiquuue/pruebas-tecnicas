@@ -5,20 +5,21 @@
                 <img :src="image" alt="Product Thumbnail">
             </div>
 
-            <div class="card__title">{{ title }}</div>
+            <div class="card__title">{{ title }} - {{ price }} €</div>
             <div class="card__subtitle">{{ description }}</div>
 
             <div class="card__wrapper">
-                <button class="card__btn card__btn-solid">Comprar</button>
-                <button class="card__btn card__btn-solid">Mostrar</button>
+                <button @click="verProducto" class="card__btn card__btn-solid">Mostrar</button>
             </div>
         </section>
-
     </main>
 </template>
 
 <script setup lang="ts">
+    import {defineProps} from 'vue'
+    import { useRouter } from 'vue-router'
 
+    const router = useRouter()
 const props = defineProps({
     image: {
         type: String,
@@ -39,8 +40,16 @@ const props = defineProps({
     rating: {
         type: Number,
         required: true
+    },
+    id: {
+      type: Number,
+      required: true
     }
 })
+
+const verProducto = () => {
+        router.push({ name: 'productos', params: { id: props.id } })
+    }
 
 
 </script>
