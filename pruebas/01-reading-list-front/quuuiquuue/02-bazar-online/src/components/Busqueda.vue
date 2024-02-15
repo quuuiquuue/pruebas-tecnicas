@@ -7,6 +7,7 @@
 
             <div class="card__title">{{ title }} - {{ price }} €</div>
             <div class="card__subtitle">{{ description }}</div>
+            <div class="card__subtitle">Rating: {{ generarEstrellas() }}</div>
 
             <div class="card__wrapper">
                 <button @click="verProducto" class="card__btn card__btn-solid">Mostrar</button>
@@ -49,7 +50,16 @@ const props = defineProps({
 
 const verProducto = () => {
         router.push({ name: 'productos', params: { id: props.id } })
+}
+
+const generarEstrellas = () => {
+    let estrellas = '⭐️'.repeat(Math.floor(props.rating));
+    const fraccion = props.rating % 1;
+    if (fraccion > 0.5) {
+      estrellas += '⭐️';
     }
+    return estrellas;
+  };
 
 
 </script>
@@ -88,10 +98,15 @@ p {
   align-items: center;
   border-radius: 20px;
   background: var(--bg-color);
-  border: 5px solid black;
+  border: 5px solid #cacacaee;
   padding: 10px;
   margin: 10px;
+ transition: 0.3s ease-out;
+}
 
+.card:hover {
+ border-color: #008bf8;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 }
 
 .card__img {

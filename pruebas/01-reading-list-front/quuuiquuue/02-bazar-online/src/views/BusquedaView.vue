@@ -1,15 +1,14 @@
 <template>
   <main>
     <article>
-      <header class="flex items-center justify-between px-4 py-2 bg-gray-900 text-white">
+      <header class="flex">
         <div class="flex items-center">
-          <img class="h-12 mr-4" :src="caravana" alt="Caravana icon">
-          <h1 class="text-lg font-bold">Bazar Online</h1>
+          <img class="h-12 mr-4 logo" :src="caravana" alt="Caravana icon">
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center ">
           <input v-model="searchQuery" placeholder="Search" type="search"
-            class="input h-10 px-4 border-2 border-transparent rounded-md outline-none bg-gray-200 text-gray-800 transition duration-300 ease-in-out">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg">Buscar</button>
+            class="buscador card">
+            <button class="boton_card">Buscar</button>
 
         </div>
       </header>
@@ -36,22 +35,69 @@ main {
   justify-content: flex-start; /* Esto alinea los elementos hacia la derecha */
 } /* Estilos para el header */
 
+.flex {
+  display: flex;
+  margin: 10px;
+}
+
+.boton {
+  margin-top: 40px;
+  width: 150px;
+  height: 50px;
+}
+
+.buscador {
+  margin-top: 40px;
+  height: 50px;
+  width: 500px;
+}
 
 /* Estilos para el logo */
 .logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  height: 40px; /* Puedes ajustar la altura según tus necesidades */
+  height: 120px; /* Puedes ajustar la altura según tus necesidades */
 }
 
 /* Estilos para el input de búsqueda */
 .search-input {
   margin-left: auto; /* Mueve el input de búsqueda al extremo derecho */
 }
+.card {
+ width: 400px;
+ height: 50px;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ margin-left: 20px;
+ padding: 1.8rem;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
 
+}
+
+.boton_card {
+ width: 200px;
+ height: 20px;
+ margin-top: 40px;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ padding: 1.8rem;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
+ text-align: center;
+}
+
+.card:hover {
+ border-color: #008bf8;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.boton_card:hover {
+ border-color: #008bf8;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
 </style>
 
 <script setup lang="ts">

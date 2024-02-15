@@ -1,16 +1,17 @@
 <template>
   <main>
-    <header class="flex items-center justify-between px-4 py-2 bg-gray-900 text-white">
+    <header class="flex">
         <div class="flex items-center">
-          <img class="h-12 mr-4" :src="caravana" alt="Caravana icon">
-          <h1 class="text-lg font-bold">Bazar Online</h1>
+          <img class="h-12 mr-4 logo" :src="caravana" alt="Caravana icon">
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center ">
           <input placeholder="Search" type="search"
-            class="input h-10 px-4 border-2 border-transparent rounded-md outline-none bg-gray-200 text-gray-800 transition duration-300 ease-in-out">
+            class="buscador card_search">
+            <button class="boton_card">Buscar</button>
+
         </div>
       </header>
-    <div class="card" v-if="producto">
+    <div class="card " v-if="producto">
         <div class="imagenes card__img">
             <img v-for="(imagen, index) in producto.images" :key="index" :src="imagen" :alt="'Imagen ' + (index + 1)">
         </div>
@@ -62,11 +63,18 @@ main {
   width: 90%;
   margin: 0 auto;
 }
+.logo {
+  height: 120px; /* Puedes ajustar la altura según tus necesidades */
+}
 .imagenes {
     display: grid;
     grid-template-columns: auto auto auto;
     
   }
+  .flex {
+  display: flex;
+  margin: 10px;
+}
 
   .imagenes img {
     width: 150px;
@@ -110,15 +118,45 @@ main {
   align-items: center;
   border-radius: 20px;
   background: var(--bg-color);
-  border: 5px solid black;
+  border: 5px solid #cacacaee;
   padding: 10px;
   margin: 10px;
+  transition: 0.3s ease-out;
+}
 
+.card:hover {
+ border-color: #008bf8;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card_search {
+ width: 190px;
+ height: 254px;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ padding: 1.8rem;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
 }
 
 .card__img {
   height: 100%;
   width: 100%;
+}
+.boton_card {
+ width: 200px;
+ height: 20px;
+ margin-top: 40px;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ padding: 1.8rem;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
+ text-align: center;
 }
 
 .card__img svg {
@@ -186,5 +224,34 @@ main {
 .card__btn-solid:hover {
   background: var(--bg-color);
   color: var(--main-color);
+}
+
+.buscador {
+  margin-top: 40px;
+  height: 50px;
+  width: 500px;
+}
+
+.card_search {
+ width: 400px;
+ height: 50px;
+ border-radius: 20px;
+ background: #f5f5f5;
+ position: relative;
+ margin-left: 20px;
+ padding: 1.8rem;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
+}
+
+.card_search:hover {
+ border-color: #008bf8;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.boton_card:hover {
+ border-color: #008bf8;
+ box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 }
 </style>
