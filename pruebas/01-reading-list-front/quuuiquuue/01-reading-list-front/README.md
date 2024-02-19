@@ -1,6 +1,7 @@
 # 01-reading-list-front
 
 This template should help get you started developing with Vue 3 in Vite.
+
 His site overview: https://biblioteca-virtual-econlop.netlify.app/
 
 ## Recommended IDE Setup
